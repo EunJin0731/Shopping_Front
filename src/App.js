@@ -1,26 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {BrowserRouter, Route, Link} from 'react-router-dom';
+import {Provider} from "mobx-react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import './App.scss';
+import SignUp from './SignUp/signup';
+import Login from './Login/login';
+import Stores from './Stores';
+
+const App = () => (
+    <Provider stores={Stores}>
+      <BrowserRouter>
+        <header className='app-header'>
+          <ul className='menubar'>
+            <li><Link className='menuitem' to="/signup">회원가입</Link></li>
+              <li><Link className='menuitem' to="/login">로그인</Link></li>
+          </ul>
+        </header>
+
+        <section className='app-body'>
+          <Route path='/signup' exact component={SignUp}/>
+          <Route path='/login' exact component={Login}/>
+        </section>
+      </BrowserRouter>
+    </Provider>
+);
 
 export default App;
