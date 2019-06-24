@@ -6,6 +6,7 @@ import './App.scss';
 import SignUp from './SignUp/signup';
 import Login from './Login/login';
 import Stores from './Stores';
+import Main from "./Main/main";
 
 const App = () => (
     <Provider stores={Stores}>
@@ -13,13 +14,15 @@ const App = () => (
         <header className='app-header'>
           <ul className='menubar'>
             <li><Link className='menuitem' to="/signup">회원가입</Link></li>
-              <li><Link className='menuitem' to="/login">로그인</Link></li>
+            <li><Link className='menuitem' to="/login">로그인</Link></li>
+            <li><Link className='menuitem' to="/main">HOME</Link></li>
           </ul>
         </header>
 
         <section className='app-body'>
           <Route path='/signup' exact component={SignUp}/>
           <Route path='/login' exact component={Login}/>
+          <Route path='/main' exact component={Main}/>
         </section>
       </BrowserRouter>
     </Provider>

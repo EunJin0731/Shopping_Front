@@ -1,19 +1,18 @@
 import {observable, action} from 'mobx';
 import axios from 'axios';
 
-import Signup from "../SignUp/signup";
 
-class SignUpStore {
+class ProductStore {
     static __instance = null;
 
     static getInstance() {
-        if (SignUpStore.__instance === null)
-            SignUpStore.__instance = new SignUpStore();
-        return SignUpStore.__instance;
+        if (ProductStore.__instance === null)
+            ProductStore.__instance = new ProductStore();
+        return ProductStore.__instance;
     }
 
     constructor() {
-        SignUpStore.__instance = this;
+        ProductStore.__instance = this;
     }
 
     // @observable post_time = null;
@@ -39,4 +38,4 @@ class SignUpStore {
     };*/
 }
 
-export default SignUpStore.getInstance();
+export default ProductStore.getInstance();
