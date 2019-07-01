@@ -1,41 +1,124 @@
-import {observable, action} from 'mobx';
-import axios from 'axios';
+/*
+import {observable, action} from "mobx";
+import axios from "axios";
 
-
-class ProductStore {
+class ProductStore{
     static __instance = null;
 
-    static getInstance() {
-        if (ProductStore.__instance === null)
+    static getinstance(){
+        if(ProductStore.__instance === null){
             ProductStore.__instance = new ProductStore();
+        }
         return ProductStore.__instance;
     }
 
-    constructor() {
+    constructor(){
         ProductStore.__instance = this;
     }
 
-    // @observable post_time = null;
-    // @action getTime = async () => this.post_time = await new Date().getTime();
-    // getSomething = () => TimeStore.getTime();
-
-    /*@action SignUp = async (newUser) => {
-        try {
+    @observable categoryItems = null;
+    @action fetchCategoryItems = async (categoryId) => {
+        try{
+            this.categoryItems = null;
             let response = await axios({
-                url: `http://localhost:8080/api/addUser`,
-                headers: {
-                    'Content-Type': 'application/json; charset=UTF-8'
+                url : `http://localhost:8080/product/category/${categoryId}`,
+                method : "get",
+
+                headers : {
+                    'Content-type' : 'application/json;charset=UTF-8'
                 },
-                method: 'post',
-                timeout: 3000,
-                data: JSON.stringify(newUser)
+                timeout : 3000
             });
-            return (response.status === 200)
-        } catch (ex) {
-            alert(ex.toString());
-            return false;
+            if(response.status === 200){
+                this.categoryItems = response.data;
+                console.log(this.categoryItems);
+            }
+        }catch (ex) {
+            console.log(ex);
         }
-    };*/
+    }
+
+    @observable subItems = null;
+    @action fetchItems = async (subId) => {
+        try{
+            this.subItems = null;
+            let response = await axios({
+                url : `http://localhost:8080/product/subcategory/${subId}`,
+                method : "get",
+
+                headers : {
+                    'Content-type' : 'application/json;charset=UTF-8'
+                },
+                timeout : 3000
+            });
+            if(response.status === 200){
+                this.subItems = response.data;
+            }
+        }catch (ex) {
+            console.log(ex);
+        }
+    }
+}
+
+export default ProductStore.getinstance();*/
+
+import {observable, action} from "mobx";
+import axios from "axios";
+
+class ProductStore{
+    static __instance = null;
+
+    static getInstance(){
+        if(ProductStore.__instance === null){
+            ProductStore.__instance = new ProductStore();
+        }
+        return ProductStore.__instance;
+    }
+
+    constructor(){
+        ProductStore.__instance = this;
+    }
+
+    @observable categoryItems = null;
+    @action fetchCategoryItems = async (categoryId) => {
+        try{
+            this.categoryItems = null;
+            let response = await axios({
+                url : `http://localhost:8080/product/category/${categoryId}`,
+                method : "get",
+                headers : {
+                    'Content-type' : 'application/json;charset=UTF-8'
+                },
+                timeout : 3000
+            });
+            if(response.status === 200){
+                this.categoryItems = response.data;
+                console.log(this.categoryItems);
+            }
+        }catch (ex) {
+            console.log(ex);
+        }
+    }
+
+    @observable subItems = null;
+    @action fetchSubItems = async (subId) => {
+        try{
+            this.subItems = null;
+            let response = await axios({
+                url : `http://localhost:8080/product/subcategory/${subId}`,
+                method : "get",
+                headers : {
+                    'Content-type' : 'application/json;charset=UTF-8'
+                },
+                timeout : 3000
+            });
+            if(response.status === 200){
+                this.subItems = response.data;
+            }
+        }catch (ex) {
+            console.log(ex);
+        }
+    }
 }
 
 export default ProductStore.getInstance();

@@ -6,3 +6,32 @@ ul{
       padding: 70px;
     }
   }
+
+/*
+각 서브 메뉴 카테고리 안
+ul{
+  list-style-type: none;
+
+  li{
+    float: left;
+    .menuitem{
+      color: black;
+      text-decoration: none;
+      padding: 20px;
+
+      &:hover{
+        color: darkslategray;
+        border-bottom: 1px solid cornflowerblue;
+      }
+    }
+  }
+}
+
+.main{
+  top: 50px;
+}
+
+.foot-bar{
+  right: 50%;
+  bottom:50px;
+}*/

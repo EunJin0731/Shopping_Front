@@ -6,8 +6,9 @@ import './App.scss';
 import SignUp from './SignUp/signup';
 import Login from './Login/login';
 import Stores from './Stores';
-import Main from "./Main/main";
 import Basket from "./Basket/basket";
+import Category from "./Category/category";
+import Product from "./Product/product";
 
 const App = () => (
     <Provider stores={Stores}>
@@ -16,7 +17,7 @@ const App = () => (
           <ul className='menubar'>
             <li><Link className='menuitem' to="/signup">회원가입</Link></li>
             <li><Link className='menuitem' to="/login">로그인</Link></li>
-            <li><Link className='menuitem' to="/main">HOME</Link></li>
+            <li><Link className='menuitem' to="/">HOME</Link></li>
               <li><Link className='menuitem' to="/basket">장바구니</Link></li>
           </ul>
         </header>
@@ -24,8 +25,9 @@ const App = () => (
         <section className='app-body'>
           <Route path='/signup' exact component={SignUp}/>
           <Route path='/login' exact component={Login}/>
-          <Route path='/main' exact component={Main}/>
+          <Route path='/' exact component={Category}/>
           <Route path='/basket' exact component={Basket}/>
+          <Route path='/product/:command/:param' exact component={Product} />
         </section>
       </BrowserRouter>
     </Provider>
